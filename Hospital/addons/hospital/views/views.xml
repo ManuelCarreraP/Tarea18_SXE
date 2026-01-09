@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista lista de pacientes -->
+        <record id="view_paciente_tree" model="ir.ui.view">
+            <field name="name">hospital.paciente.tree</field>
+            <field name="model">hospital.paciente</field>
+            <field name="arch" type="xml">
+                <list string="Pacientes">
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="nombre_completo"/>
+                    <field name="sintomas"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista formulario de pacientes -->
+        <record id="view_paciente_form" model="ir.ui.view">
+            <field name="name">hospital.paciente.form</field>
+            <field name="model">hospital.paciente</field>
+            <field name="arch" type="xml">
+                <form string="Paciente">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nombre"/>
+                                <field name="apellidos"/>
+                                <field name="nombre_completo" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="sintomas" widget="textarea"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para pacientes -->
+        <record id="action_paciente" model="ir.actions.act_window">
+            <field name="name">Pacientes</field>
+            <field name="res_model">hospital.paciente</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Vista lista de médicos -->
+        <record id="view_medico_tree" model="ir.ui.view">
+            <field name="name">hospital.medico.tree</field>
+            <field name="model">hospital.medico</field>
+            <field name="arch" type="xml">
+                <list string="Médicos">
+                    <field name="nombre"/>
+                    <field name="apellidos"/>
+                    <field name="nombre_completo"/>
+                    <field name="numero_colegiado"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista formulario de médicos -->
+        <record id="view_medico_form" model="ir.ui.view">
+            <field name="name">hospital.medico.form</field>
+            <field name="model">hospital.medico</field>
+            <field name="arch" type="xml">
+                <form string="Médico">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="apellidos"/>
+                            <field name="nombre_completo" readonly="1"/>
+                            <field name="numero_colegiado"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para médicos -->
+        <record id="action_medico" model="ir.actions.act_window">
+            <field name="name">Médicos</field>
+            <field name="res_model">hospital.medico</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Vista lista de consultas -->
+        <record id="view_consulta_tree" model="ir.ui.view">
+            <field name="name">hospital.consulta.tree</field>
+            <field name="model">hospital.consulta</field>
+            <field name="arch" type="xml">
+                <list string="Consultas">
+                    <field name="fecha_consulta"/>
+                    <field name="paciente_id"/>
+                    <field name="medico_id"/>
+                    <field name="diagnostico"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vista formulario de consultas -->
+        <record id="view_consulta_form" model="ir.ui.view">
+            <field name="name">hospital.consulta.form</field>
+            <field name="model">hospital.consulta</field>
+            <field name="arch" type="xml">
+                <form string="Consulta">
+                    <sheet>
+                        <group>
+                            <field name="paciente_id"/>
+                            <field name="medico_id"/>
+                            <field name="fecha_consulta"/>
+                        </group>
+                        <group>
+                            <field name="diagnostico" widget="textarea"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para consultas -->
+        <record id="action_consulta" model="ir.actions.act_window">
+            <field name="name">Consultas</field>
+            <field name="res_model">hospital.consulta</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menús -->
+        <menuitem id="menu_hospital" name="Hospital"/>
+
+        <menuitem id="menu_pacientes"
+                  name="Pacientes"
+                  parent="menu_hospital"
+                  action="action_paciente"/>
+
+        <menuitem id="menu_medicos"
+                  name="Médicos"
+                  parent="menu_hospital"
+                  action="action_medico"/>
+
+        <menuitem id="menu_consultas"
+                  name="Consultas"
+                  parent="menu_hospital"
+                  action="action_consulta"/>
+
+</odoo>
